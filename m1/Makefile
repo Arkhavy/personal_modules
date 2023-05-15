@@ -6,7 +6,7 @@
 #    By: ljohnson <ljohnson@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 11:03:27 by ljohnson          #+#    #+#              #
-#    Updated: 2023/05/15 11:06:12 by ljohnson         ###   ########lyon.fr    #
+#    Updated: 2023/05/15 11:45:20 by ljohnson         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@
 # .SILENT:
 
 NAME	:=	debug.a
+TEST	:=	debug_test
 
 #//////////////////////////////////////////////////////////////////////////////
 #		ALL FILES
@@ -81,6 +82,9 @@ all:	$(NAME)
 $(NAME):	$(OBJS)
 	$(AR) $@ $(OBJS)
 
+test: $(OBJS)
+	$(CC) $(CF) $(CI) $(OBJS) srcs/main.cpp -o $(TEST)
+
 $(P_DEPS)%.d:	$(P_SRCS)%.cpp Makefile | $(P_DEPS)
 	$(CC) $(CF) $(CI) -MM -MF $@ -MT "$(P_OBJS)$*.o $@" $<
 
@@ -104,6 +108,7 @@ clean:
 fclean:
 	$(MAKE) clean
 	$(RM) $(NAME)
+	$(RM) $(TEST)
 
 re:
 	$(MAKE) fclean
