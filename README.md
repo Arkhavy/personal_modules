@@ -2,6 +2,7 @@
 
 #### All modules are libraries you have to compile through their own Makefile
 #### All modules can use text colors and text styles, defined below
+
 ```C++
 //colors
 # define BLACK		"\033[30m"
@@ -27,9 +28,9 @@ m1 = debug WiP
 m2 = .
 
 
-## m1 prototypes
+# m1 prototypes
 
-### `ft_print_msg` function overloads
+## `ft_print_msg` function overloads
 
 ```C++
 // Overload 1 : print a string on `std::cerr`
@@ -45,4 +46,16 @@ T	ft_print_msg(std::string const& message, T const val);
 // Overload 4 : Print a string on `std::cerr` given a style and color and return the last parameter
 template<typename T>
 T	ft_print_msg(char const* style, char const* color, std::string const& message, T const val);
+```
+
+## `Debug` class definition
+
+Has `static unsigned int level` as attribute that works from 1 to 4
+
+### `Debug::info` function prototype
+Takes up to 4 parameters to display, the 5th one is default to display the **calling function name**
+Display depends on level set
+```C++
+template<typename T1, typename T2, typename T3, typename T4>
+static void	info(T1 t1, T2 t2, T3 t3, T4 t4, std::string const& str = __builtin_FUNCTION()) throw();
 ```
