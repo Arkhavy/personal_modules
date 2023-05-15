@@ -6,7 +6,7 @@
 /*   By: ljohnson <ljohnson@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:10:51 by ljohnson          #+#    #+#             */
-/*   Updated: 2023/05/15 13:16:05 by ljohnson         ###   ########lyon.fr   */
+/*   Updated: 2023/05/15 13:33:58 by ljohnson         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@
 class	Debug : public std::exception
 {
 	protected:
-		static unsigned int	level;
 
 	public:
+		static unsigned int	level;
 		virtual char const*	what() const throw();
 
 		template<typename T1, typename T2, typename T3, typename T4>
-		static void	info(T1 const* t1, T2 const* t2, T3 const* t3, T4 const* t4) throw();
+		static void	info(T1 t1, T2 t2, T3 t3, T4 t4, std::string const& str = __builtin_FUNCTION()) throw();
 };
 
 /* ************************************************************************** */
