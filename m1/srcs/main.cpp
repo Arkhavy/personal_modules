@@ -6,11 +6,11 @@
 /*   By: ljohnson <ljohnson@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:17:39 by ljohnson          #+#    #+#             */
-/*   Updated: 2023/05/15 11:47:17 by ljohnson         ###   ########lyon.fr   */
+/*   Updated: 2023/05/15 13:17:27 by ljohnson         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <debug.hpp>
+#include <Debug.hpp>
 
 int	main(void)
 {

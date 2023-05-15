@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.hpp                                          :+:      :+:    :+:   */
+/*   Debug.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ljohnson <ljohnson@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:10:51 by ljohnson          #+#    #+#             */
-/*   Updated: 2023/05/15 11:40:47 by ljohnson         ###   ########lyon.fr   */
+/*   Updated: 2023/05/15 13:16:05 by ljohnson         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,26 @@
 # define ERASE		"\033[2K\r"
 # define RESET		"\033[0m"
 
+//debug
+# define LINE __LINE__
+# define FILE __FILE__
+# define FUNC __PRETTY_FUNCTION__
+
+/* ************************************************************************** */
+/* FT_PRINT_MSG FUNCTION OVERLOADS */
+/* ************************************************************************** */
+class	Debug : public std::exception
+{
+	protected:
+		static unsigned int	level;
+
+	public:
+		virtual char const*	what() const throw();
+
+		template<typename T1, typename T2, typename T3, typename T4>
+		static void	info(T1 const* t1, T2 const* t2, T3 const* t3, T4 const* t4) throw();
+};
+
 /* ************************************************************************** */
 /* FT_PRINT_MSG FUNCTION OVERLOADS */
 /* ************************************************************************** */
@@ -47,5 +67,4 @@ T	ft_print_msg(std::string const& message, T const val);
 template<typename T>
 T	ft_print_msg(char const* style, char const* color, std::string const& message, T const val);
 
-
-#include <debug.tpp>
+#include <Debug.tpp>

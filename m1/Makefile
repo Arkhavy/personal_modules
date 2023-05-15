@@ -6,24 +6,24 @@
 #    By: ljohnson <ljohnson@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 11:03:27 by ljohnson          #+#    #+#              #
-#    Updated: 2023/05/15 11:45:20 by ljohnson         ###   ########lyon.fr    #
+#    Updated: 2023/05/15 12:28:36 by ljohnson         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: all clean fclean re
 # .SILENT:
 
-NAME	:=	debug.a
-TEST	:=	debug_test
+NAME	:=	Debug.a
+TEST	:=	Debug_test
 
 #//////////////////////////////////////////////////////////////////////////////
 #		ALL FILES
 #//////////////////////////////////////////////////////////////////////////////
 
 # Files
-LST_INCS	:=	debug.hpp
-LST_SRCS	:=	debug.cpp
-LST_TMPT	:=	debug.tpp
+LST_INCS	:=	Debug.hpp
+LST_SRCS	:=	Debug.cpp
+LST_TMPT	:=	Debug.tpp
 LST_DEPS	:=	$(LST_SRCS:.cpp=.d)
 LST_OBJS	:=	$(LST_SRCS:.cpp=.o)
 
