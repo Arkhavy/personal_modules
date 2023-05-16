@@ -6,7 +6,7 @@
 /*   By: ljohnson <ljohnson@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:13:25 by ljohnson          #+#    #+#             */
-/*   Updated: 2023/05/16 12:29:20 by ljohnson         ###   ########lyon.fr   */
+/*   Updated: 2023/05/16 16:01:02 by ljohnson         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,14 @@ void	Debug::bp_start() throw()
 
 	Debug::bp_time = s_time.tv_sec * 1000000 + s_time.tv_usec;
 	Debug::bp_count = 0;
-	Debug::bp_map.clear();
-	Debug::bp_info.clear();
+	Debug::bp_map_time.clear();
+	Debug::bp_map_info.clear();
 }
 
 void	Debug::bp_end() throw()
 {
-	Debug::bp_map.clear();
-	Debug::bp_info.clear();
+	Debug::bp_map_time.clear();
+	Debug::bp_map_info.clear();
 	std::cerr << RED << BOLD << Debug::bp_count << RESET;
 	std::cerr << " breakpoints cleared." << std::endl;
 	Debug::bp_count = 0;
@@ -93,11 +93,30 @@ void	Debug::bp(std::string const& str) throw()
 {
 	struct timeval	s_time;
 
-	Debug::bp_map[Debug::bp_count] = (s_time.tv_sec * 1000000 + s_time.tv_usec) - Debug::bp_time;
-	Debug::bp_info[Debug::bp_count] = str;
+	Debug::bp_map_time[Debug::bp_count] = (s_time.tv_sec * 1000000 + s_time.tv_usec) - Debug::bp_time;
+	Debug::bp_map_info[Debug::bp_count] = str;
 	std::cerr << "Breakpoint #" << Debug::bp_count << " set at ";
-	std::cerr << CYAN << Debug::bp_map[Debug::bp_count] << RESET << std::endl;
+	std::cerr << CYAN << Debug::bp_map_time[Debug::bp_count] << RESET << std::endl;
 	std::cerr << "Function: " << YELLOW << BOLD << str << RESET << std::endl;
 	Debug::bp_count++;
 }
 
+void	Debug::display_bp_map() throw()
+{
+	std::map<unsigned int, u_int64_t>::iterator		itm = Debug::bp_map_time.begin();
+	std::map<unsigned int, std::string>::iterator	iti = Debug::bp_map_info.begin();
+
+	while (itm != Debug::bp_map_time.end() && iti != Debug::bp_map_info.end())
+	{
+		std::cerr << RED << BOLD << "Breakpoint #" << itm->first << RESET << std::endl;
+		std::cerr << "BP time: " << CYAN << Debug::bp_map_time[itm->first] << RESET << std::endl;
+		std::cerr << "BP info: " << YELLOW << Debug::bp_map_info[iti->first] << RESET << std::endl;
+		std::cerr << std::endl;
+		itm++;
+		iti++;
+	}
+}
+
+unsigned int	Debug::get_bp_count() throw() {return (Debug::bp_count);}
+u_int64_t		Debug::get_bp_time(unsigned int idx) {return (Debug::bp_map_time[idx]);}
+std::string		Debug::get_bp_info(unsigned int idx) {return (Debug::bp_map_info[idx]);}
