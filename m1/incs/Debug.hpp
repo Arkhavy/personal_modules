@@ -6,7 +6,7 @@
 /*   By: ljohnson <ljohnson@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:10:51 by ljohnson          #+#    #+#             */
-/*   Updated: 2023/05/16 11:18:19 by ljohnson         ###   ########lyon.fr   */
+/*   Updated: 2023/05/16 12:29:46 by ljohnson         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ class	Debug
 		static u_int64_t							bp_time;
 		static unsigned int							bp_count;
 		static std::map<unsigned int, u_int64_t>	bp_map;
+		static std::map<unsigned int, std::string>	bp_info;
 
 	public:
 		static void	start(unsigned int level) throw();
@@ -80,11 +81,12 @@ class	Debug
 	/* ************************************************************************** */
 		static void			bp_start() throw();
 		static void			bp_end() throw();
-		static void			bp() throw();
+		static void			bp(std::string const& str = CALL) throw();
 
 		static void			display_bp_map() throw();
 		static unsigned int	get_bp_count() throw();
-		static u_int64_t	get_bp(unsigned int idx) throw();
+		static u_int64_t	get_bp_timer(unsigned int idx) throw();
+		static std::string	get_bp_info(unsigned int idx) throw();
 
 
 	/* ************************************************************************** */
