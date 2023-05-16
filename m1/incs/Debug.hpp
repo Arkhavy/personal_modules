@@ -6,7 +6,7 @@
 /*   By: ljohnson <ljohnson@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:10:51 by ljohnson          #+#    #+#             */
-/*   Updated: 2023/05/15 14:47:08 by ljohnson         ###   ########lyon.fr   */
+/*   Updated: 2023/05/16 11:18:19 by ljohnson         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <exception>
 #include <cstdlib>
 #include <sys/time.h>
+#include <map>
 
 //colors
 #define BLACK		"\033[30m"
@@ -46,25 +47,48 @@
 /* ************************************************************************** */
 /* FT_PRINT_MSG FUNCTION OVERLOADS */
 /* ************************************************************************** */
-class	Debug : public std::exception
+class	Debug
 {
-	protected:
+	private:
+		static unsigned int							level;
+		static u_int64_t							time;
+
+		static u_int64_t							bp_time;
+		static unsigned int							bp_count;
+		static std::map<unsigned int, u_int64_t>	bp_map;
 
 	public:
-		static unsigned int	level;
-		static u_int64_t	time;
+		static void	start(unsigned int level) throw();
 
-		virtual char const*	what() const throw();
-
+	/* ************************************************************************** */
+	/* INFORMATION MODULE */
+	/* ************************************************************************** */
 		static void	detail(std::string const& file, int const& line, std::string const& function) throw();
-		static void	start_time() throw();
-		static void	end_time() throw();
 
 		template<typename T1, typename T2, typename T3, typename T4>
 		static void	info(T1 t1, T2 t2, T3 t3, T4 t4, std::string const& str = CALL) throw();
 
 	/* ************************************************************************** */
-	/* PRINT_MSG FUNCTION OVERLOADS */
+	/* TIME MODULE */
+	/* ************************************************************************** */
+		static void	start_time() throw();
+		static void	display_milestone() throw();
+		static void	end_time() throw();
+		
+	/* ************************************************************************** */
+	/* BREAKPOINT MODULE */
+	/* ************************************************************************** */
+		static void			bp_start() throw();
+		static void			bp_end() throw();
+		static void			bp() throw();
+
+		static void			display_bp_map() throw();
+		static unsigned int	get_bp_count() throw();
+		static u_int64_t	get_bp(unsigned int idx) throw();
+
+
+	/* ************************************************************************** */
+	/* PRINT_MSG MODULE */
 	/* ************************************************************************** */
 		static void	print_msg(std::string const& message) throw();
 		static void	print_msg(char const* style, char const* color, std::string const& message) throw();
