@@ -6,14 +6,11 @@
 /*   By: ljohnson <ljohnson@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:17:39 by ljohnson          #+#    #+#             */
-/*   Updated: 2023/05/15 14:48:10 by ljohnson         ###   ########lyon.fr   */
+/*   Updated: 2023/05/22 12:27:18 by ljohnson         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Debug.hpp>
-
-unsigned int	Debug::level;
-u_int64_t		Debug::time;
 
 void	test_fnc()
 {
@@ -23,8 +20,7 @@ void	test_fnc()
 
 int	main(void)
 {
-	Debug::level = 4;
-
+	Debug::start(4);
 	Debug::print_msg(RESET, RED, "This is a red test");
 	std::cout << Debug::print_msg(RESET, YELLOW, "This is a yellow test with int", 42) << std::endl;
 	Debug::print_msg(BOLD, BLUE, "This is a bold blue test");

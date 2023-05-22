@@ -6,11 +6,18 @@
 /*   By: ljohnson <ljohnson@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:13:25 by ljohnson          #+#    #+#             */
-/*   Updated: 2023/05/16 16:01:02 by ljohnson         ###   ########lyon.fr   */
+/*   Updated: 2023/05/22 12:26:53 by ljohnson         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Debug.hpp>
+
+unsigned int						Debug::level;
+u_int64_t							Debug::time;
+u_int64_t							Debug::bp_time;
+unsigned int						Debug::bp_count;
+std::map<unsigned int, u_int64_t>	Debug::bp_map_time;
+std::map<unsigned int, std::string>	Debug::bp_map_info;
 
 void	Debug::start(unsigned int level) throw()
 {
@@ -59,11 +66,26 @@ void	Debug::start_time() throw()
 
 void	Debug::end_time() throw()
 {
+	if (Debug::time == 0)
+		return ;
+
 	struct timeval	s_time;
 
 	gettimeofday(&s_time, NULL);
-	std::cerr << "Time elapsed since start: " << CYAN;
+	std::cerr << "Time elapsed from start to end: " << CYAN;
 	std::cerr << (s_time.tv_sec * 1000000 + s_time.tv_usec) - Debug::time << RESET << std::endl;
+}
+
+void	Debug::display_milestone(std::string const& str) throw()
+{
+	if (Debug::time == 0)
+		return ;
+
+	struct timeval	s_time;
+
+	gettimeofday(&s_time, NULL);
+	std::cerr << "Milestone from function: " << YELLOW << str << RESET << std::endl;
+	std::cerr << "Time: " << CYAN << (s_time.tv_sec * 1000000 + s_time.tv_usec) - Debug::time << RESET << std::endl;
 }
 
 /* ************************************************************************** */

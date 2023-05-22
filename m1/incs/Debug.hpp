@@ -6,7 +6,7 @@
 /*   By: ljohnson <ljohnson@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:10:51 by ljohnson          #+#    #+#             */
-/*   Updated: 2023/05/16 16:01:12 by ljohnson         ###   ########lyon.fr   */
+/*   Updated: 2023/05/22 12:24:04 by ljohnson         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ class	Debug
 	/* TIME MODULE */
 	/* ************************************************************************** */
 		static void	start_time() throw();
-		static void	display_milestone() throw();
+		static void	display_milestone(std::string const& str = CALL) throw();
 		static void	end_time() throw();
 		
 	/* ************************************************************************** */
