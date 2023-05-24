@@ -6,7 +6,7 @@
 /*   By: ljohnson <ljohnson@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:10:51 by ljohnson          #+#    #+#             */
-/*   Updated: 2023/05/24 11:44:32 by ljohnson         ###   ########lyon.fr   */
+/*   Updated: 2023/05/24 13:49:41 by ljohnson         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,6 @@ class	Debug
 		static unsigned int	get_bp_count() throw();
 		static u_int64_t	get_bp_time(unsigned int idx);
 		static std::string	get_bp_info(unsigned int idx);
-
 };
-
 
 #include <Debug.tpp>

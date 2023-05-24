@@ -152,4 +152,16 @@ static void			bp(std::string const& str = CALL) throw();
 <!-- **************************************************************************************************** -->
 
 ## `Debug::display_bp_map()` function prototype
-This function will use map iterators to display the full list of breakpoints and informations
+This function will use map iterators to display the full list of breakpoints and their informations
+```C++
+static void			display_bp_map() throw();
+```
+
+## Getters
+`get_bp_time` and `get_bp_info` will return the value from the corresponding index \
+Return values are time in ms from `bp_map_time` and calling function info from `bp_map_info`
+```C++
+static unsigned int	get_bp_count() throw();
+static u_int64_t	get_bp_time(unsigned int idx);
+static std::string	get_bp_info(unsigned int idx);
+```
