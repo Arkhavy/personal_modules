@@ -6,7 +6,7 @@
 /*   By: ljohnson <ljohnson@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:10:51 by ljohnson          #+#    #+#             */
-/*   Updated: 2023/05/22 12:24:04 by ljohnson         ###   ########lyon.fr   */
+/*   Updated: 2023/05/24 11:44:32 by ljohnson         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,14 @@ class	Debug
 		template<typename T1, typename T2, typename T3, typename T4>
 		static void	info(T1 t1, T2 t2, T3 t3, T4 t4, std::string const& str = CALL) throw();
 
+		static void	print_msg(std::string const& message) throw();
+		static void	print_msg(char const* style, char const* color, std::string const& message) throw();
+
+		template<typename T>
+		static T	print_msg(std::string const& message, T const val) throw();
+
+		template<typename T>
+		static T	print_msg(char const* style, char const* color, std::string const& message, T const val) throw();
 	/* ************************************************************************** */
 	/* TIME MODULE */
 	/* ************************************************************************** */
@@ -88,17 +96,6 @@ class	Debug
 		static u_int64_t	get_bp_time(unsigned int idx);
 		static std::string	get_bp_info(unsigned int idx);
 
-	/* ************************************************************************** */
-	/* PRINT_MSG MODULE */
-	/* ************************************************************************** */
-		static void	print_msg(std::string const& message) throw();
-		static void	print_msg(char const* style, char const* color, std::string const& message) throw();
-
-		template<typename T>
-		static T	print_msg(std::string const& message, T const val) throw();
-
-		template<typename T>
-		static T	print_msg(char const* style, char const* color, std::string const& message, T const val) throw();
 };
 
 
